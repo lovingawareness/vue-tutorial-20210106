@@ -1,12 +1,20 @@
 <template>
   <div class="container">
     <div class="holder">
+      <form @submit.prevent="addSkill">
+        <input
+          type="text"
+          placeholder="Enter a skill you have.."
+          v-model="skill"
+          name="skill"
+        />
+      </form>
+
       <ul>
         <li v-for="(data, index) in skills" :key="index">
           {{ data.skill }}
         </li>
       </ul>
-      <p>These are the skills that you possess.</p>
     </div>
   </div>
 </template>
@@ -16,8 +24,17 @@ export default {
   name: "Skills",
   data() {
     return {
+      checked: false,
+      skill: "",
       skills: [{ skill: "Vue.js" }, { skill: "Frontend Developer" }],
     };
+  },
+  methods: {
+    addSkill() {
+      this.skills.push({ skill: this.skill });
+      this.skill = "";
+      console.log("The checkbox value is: " + this.checked);
+    },
   },
 };
 </script>
@@ -51,5 +68,14 @@ p {
 
 .container {
   box-shadow: 0px 0px 40px lightgray;
+}
+
+input {
+  width: calc(100% - 40px);
+  border: 0;
+  padding: 20px;
+  font-size: 1.3em;
+  background-color: #323333;
+  color: #687f7f;
 }
 </style>
