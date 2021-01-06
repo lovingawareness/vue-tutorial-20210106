@@ -12,7 +12,7 @@
 
       <ul>
         <li v-for="(data, index) in skills" :key="index">
-          {{ data.skill }}
+          {{ data.skill }}<i class="fa fa-minus-circle" v-on:click="remove(index)"></i>
         </li>
       </ul>
     </div>
@@ -35,12 +35,17 @@ export default {
       this.skill = "";
       console.log("The checkbox value is: " + this.checked);
     },
+    remove(id) {
+      this.skills.splice(id, 1);
+    }
   },
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+@import "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css";
+
 .holder {
   background: #fff;
 }
